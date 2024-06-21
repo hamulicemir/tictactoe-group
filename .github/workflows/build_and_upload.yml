@@ -13,7 +13,7 @@ name: Java CI with Maven
 # Definition der Trigger die zum Auslösen führen
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "dev-emir" ]
   pull_request:
     branches: [ "main" ]
   # Möglichkeit den Worklow auch manuell anzustoßen
@@ -36,10 +36,10 @@ jobs:
         run: mvn package
 
       - name: Copy to staging
-        run: mkdir staging && cp /home/runner/work/2024_bwi2_le3_reference/2024_bwi2_le3_reference/target/*.jar staging
+        run: mkdir staging && cp /home/runner/work/tictactoe-group/tictactoe-group/target/*.jar staging
 
       - name: upload
         uses: actions/upload-artifact@v4
         with:
-          name: BIW2_Calculator.jar
+          name: TestApplication.jar
           path: staging
