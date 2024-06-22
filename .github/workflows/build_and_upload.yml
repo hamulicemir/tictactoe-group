@@ -13,7 +13,7 @@ name: Java CI with Maven
 # Definition der Trigger die zum Auslösen führen
 on:
   push:
-    branches: [ "feature/US02-make-move" ]
+    branches: [ "feature/US04-start-new-game" ]
   pull_request:
     branches: [ "main" ]
   # Möglichkeit den Worklow auch manuell anzustoßen
