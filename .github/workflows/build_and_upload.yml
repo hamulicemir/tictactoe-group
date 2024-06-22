@@ -13,7 +13,7 @@ name: Java CI with Maven
 # Definition der Trigger die zum Auslösen führen
 on:
   push:
-    branches: [ "feature/US01-view-state-of-game" ]
+    branches: [ "feature/US03-game-end-notification" ]
   pull_request:
     branches: [ "main" ]
   # Möglichkeit den Worklow auch manuell anzustoßen
