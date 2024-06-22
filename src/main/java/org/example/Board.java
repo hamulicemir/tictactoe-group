@@ -31,4 +31,20 @@ public class Board {
             }
         }
     }
+    public String print() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                sb.append(cells[i][j] == '\0' ? " " : cells[i][j]);
+                if (j < cells[i].length - 1) {
+                    sb.append("|");
+                }
+            }
+            sb.append("\n");
+            if (i < cells.length - 1) {
+                sb.append("-----\n");
+            }
+        }
+        return sb.toString();
+    }
 }
