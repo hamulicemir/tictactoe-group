@@ -45,4 +45,8 @@ public class TicTacToe {
     public Board getBoard(){
         return board;
     }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 }
