@@ -33,7 +33,7 @@ public class BoardTest {
         board.place(1, 1, 'O');
         assertFalse(board.isCellEmpty(1, 1)); // Zelle ist besetzt
     }
-    @Test(expected = IndexOutOfBoundsException.class) //Außerhalb vom Spielfeld
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testPlaceMarkerOutsideBoard() {
         board.place(3, 3, 'X');
     }
