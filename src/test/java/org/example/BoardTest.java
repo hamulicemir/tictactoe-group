@@ -65,4 +65,42 @@ public class BoardTest {
         String expectedOutput = "X|O|X\n" + "-----\n" + "O|X|O\n" + "-----\n" + "O|X|O\n";
         assertEquals(expectedOutput, board.print());
     }
+    @Test
+    public void testIsFullWhenPartiallyFilled() {
+        // Negativer Test: Board ist teilweise gefüllt und sollte nicht voll sein.
+        board.place(0, 0, 'X');
+        board.place(1, 1, 'O');
+        assertFalse(board.isFull());
+    }
+
+    @Test
+    public void testIsFullWhenCompletelyFilled() {
+        // Positiver Test: Board ist vollständig gefüllt und sollte voll sein.
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board.place(i, j, 'X');
+            }
+        }
+        assertTrue(board.isFull());
+    }
+
+    @Test
+    public void testIsFullAfterClear() {
+        // Negativer Test: Board wird nach vollständiger Füllung gelöscht und sollte nicht voll sein.
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board.place(i, j, 'X');
+            }
+        }
+        board.clear();
+        assertFalse(board.isFull());
+    }
+
+
+    @Test
+    public void testPlace() {
+        // Positiver Test: Überprüft, ob die Platzierung korrekt erfolgt.
+        board.place(0, 0, 'X');
+        assertEquals('X', board.getCells()[0][0]);
+    }
 }

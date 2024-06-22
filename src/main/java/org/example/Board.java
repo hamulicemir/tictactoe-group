@@ -47,4 +47,14 @@ public class Board {
         }
         return sb.toString();
     }
+    public boolean isFull() {
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j] == '\0') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

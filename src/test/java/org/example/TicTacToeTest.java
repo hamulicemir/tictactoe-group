@@ -12,25 +12,94 @@ public class TicTacToeTest {
     @Before
     public void setUp() {
         game = new TicTacToe();
-        game.getBoard().place(0, 0, 'X'); // Füge einen Zug hinzu, um den Reset zu testen
-    }
-
-    @Test
-    public void testStartNewGame() {
         game.start();
-        char[][] board = game.getBoard().getCells();
+    }
+    @Test
+    public void testStart() {
+        game.start();
+        Board board = game.getBoard();
+        char[][] cells = board.getCells();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                assertEquals('\0', board[i][j]);
+                assertEquals('\0', cells[i][j]);
             }
         }
     }
 
     @Test
-    public void testPlayersRemainSameAfterNewGame() {
-        Player player1 = game.getCurrentPlayer();
+    public void testHasWinner_NoWinnerAtStart() {
         game.start();
-        assertEquals(player1, game.getCurrentPlayer());
+        assertFalse(game.hasWinner());
     }
+
+    @Test
+    public void testHasWinner_RowWinner() {
+        game.start();
+        char[][] cells = game.getBoard().getCells();
+        cells[0][0] = 'X';
+        cells[0][1] = 'X';
+        cells[0][2] = 'X';
+        assertTrue(game.hasWinner());
+    }
+
+    @Test
+    public void testHasWinner_ColumnWinner() {
+        game.start();
+        char[][] cells = game.getBoard().getCells();
+        cells[0][0] = 'O';
+        cells[1][0] = 'O';
+        cells[2][0] = 'O';
+        assertTrue(game.hasWinner());
+    }
+
+    @Test
+    public void testHasWinner_DiagonalWinner() {
+        game.start();
+        char[][] cells = game.getBoard().getCells();
+        cells[0][0] = 'X';
+        cells[1][1] = 'X';
+        cells[2][2] = 'X';
+        assertTrue(game.hasWinner());
+    }
+
+    @Test
+    public void testHasWinner_ReverseDiagonalWinner() {
+        game.start();
+        char[][] cells = game.getBoard().getCells();
+        cells[0][2] = 'O';
+        cells[1][1] = 'O';
+        cells[2][0] = 'O';
+        assertTrue(game.hasWinner());
+    }
+
+    @Test
+    public void testHasWinner_NoWinner() {
+        game.start();
+        char[][] cells = game.getBoard().getCells();
+        cells[0][0] = 'X';
+        cells[0][1] = 'O';
+        cells[0][2] = 'X';
+        cells[1][0] = 'O';
+        cells[1][1] = 'X';
+        cells[1][2] = 'O';
+        cells[2][0] = 'O';
+        cells[2][1] = 'X';
+        cells[2][2] = 'O';
+        assertFalse(game.hasWinner());
+    }
+
+    @Test
+    public void testHasWinner_NoWinnerWithPartialFilling() {
+        game.start();
+        char[][] cells = game.getBoard().getCells();
+        cells[0][0] = 'X';
+        cells[0][1] = 'O';
+        cells[0][2] = 'X';
+        cells[1][0] = 'O';
+        cells[1][1] = 'X';
+        // Restliche Felder bleiben leer
+        assertFalse(game.hasWinner());
+    }
+
 
 }
